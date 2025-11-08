@@ -5,7 +5,6 @@ import { FooterSection } from "../components/sections/FooterSection";
 import { GallerySection } from "../components/sections/GallerySection";
 import { HeaderSection } from "../components/sections/HeaderSection";
 import { HeroSection } from "../components/sections/HeroSection";
-import { NewsletterSection } from "../components/sections/NewsletterSection";
 import { TestimonialsSection } from "../components/sections/TestimonialsSection";
 import { TripPlannerSection } from "../components/sections/TripPlannerSection";
 import image1 from "../assets/image-1.png";
@@ -22,7 +21,6 @@ const HomePage: React.FC = () => {
       <TestimonialsSection />
       <TripPlannerSection />
       <BlogSection />
-      <NewsletterSection />
       <FooterSection />
       {/* This image was absolutely positioned. It might need adjustment. */}
       <img className="absolute top-0 left-[83px] w-[375px] h-[292px] object-cover" alt="Decorative" src={image1} />

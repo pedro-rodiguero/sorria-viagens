@@ -16,54 +16,52 @@ const blogContent = {
 
 export const BlogSection = () => {
   return (
-    // SUGGESTION: Using absolute positioning with large pixel values can make the layout brittle and not responsive.
-    // Consider using a more flexible layout system (like CSS Grid or Flexbox for the page structure)
-    // to avoid overlapping sections and ensure it looks good on different screen sizes.
-    <section className="flex flex-col w-[1920px] items-start justify-center gap-[100px] px-[182px] py-[140px] absolute top-[2400px] left-[-5px]">
-      <header className="flex items-center self-stretch w-full flex-[0_0_auto] gap-8 relative">
-        <div className="items-start inline-flex flex-col gap-8 relative flex-[0_0_auto]">
-          <div className="inline-flex flex-col items-start gap-5 relative flex-[0_0_auto]">
-            <h2 className="relative w-fit mt-[-1.00px] [font-family:'Playfair_Display-Regular',Helvetica] font-normal text-[#172432] text-[64px] tracking-[0] leading-[normal]">
+    // --- Responsive Blog Section ---
+    <section
+      id="blog"
+      className="flex flex-col items-center justify-center gap-16 py-20 px-4 sm:px-8 w-full"
+    >
+      <header className="flex flex-col items-center text-center gap-4 max-w-3xl">
+        <div className="flex flex-col items-center gap-5">
+          <h2 className="text-4xl md:text-5xl font-playfair font-normal text-gray-800">
               Nosso blog
-            </h2>
+          </h2>
 
-            {/* Replacing the line SVG with a styled div is cleaner */}
-            <div className="w-[150px] h-[3px] bg-[#ff7757]" role="presentation" />
-          </div>
-
-          <p className="relative w-fit [font-family:'Rubik-Regular',Helvetica] font-normal text-[#767e86] text-2xl tracking-[0] leading-[normal] whitespace-nowrap">
-            Dicas e Experiências de Viagem: Descubra o Mundo Conosco!
-          </p>
+          <div className="w-36 h-1 bg-[#ff7757]" role="presentation" />
         </div>
+
+        <p className="text-lg md:text-xl font-rubik font-normal text-gray-600">
+          Dicas e Experiências de Viagem: Descubra o Mundo Conosco!
+        </p>
       </header>
 
-      <article className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
-        {/* Using an actual <img> tag is often better for SEO and accessibility than a div with a background image. */}
+      <article className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 w-full max-w-7xl">
+        {/* Blog Image */}
         <img
           src={blogImage}
-          className="relative w-[762px] h-[873px] rounded-[26px] object-cover"
+          className="w-full lg:w-1/2 h-auto max-h-[600px] object-cover rounded-2xl shadow-lg"
           aria-label="Imagem do blog sobre planejamento de casamento"
           alt="Mulher de costas olhando para uma paisagem de montanhas"
         />
 
-        <div className="gap-6 flex-1 grow flex flex-col items-start relative">
-          <h3 className="relative self-stretch mt-[-1.00px] [font-family:'Playfair_Display-Regular',Helvetica] font-normal text-[#172432] text-[54px] tracking-[0] leading-[normal]">
+        {/* Blog Content */}
+        <div className="flex-1 flex flex-col items-start gap-6 text-left">
+          <h3 className="text-4xl md:text-5xl font-playfair font-normal text-gray-800 leading-tight">
             {blogContent.title}
           </h3>
 
-          {/* Using CSS for spacing is cleaner than adding <br /> tags */}
-          <div className="relative self-stretch [font-family:'Rubik-Regular',Helvetica] font-normal text-[#172432] text-2xl text-justify tracking-[0] leading-10 space-y-6">
+          <div className="font-rubik font-normal text-gray-700 text-lg text-justify leading-relaxed space-y-4">
             {blogContent.paragraphs.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
           </div>
 
           <a
-            href="#"
-            className="flex items-center gap-5 relative self-stretch w-full flex-[0_0_auto]"
+            href="#read-more"
+            className="flex items-center gap-3 text-[#ff7757] transition-opacity hover:opacity-80"
             aria-label="Leia mais sobre uma preocupação a menos ao planejar seu casamento"
           >
-            <span className="relative w-fit mt-[-1.00px] [font-family:'Rubik-Regular',Helvetica] font-normal text-[#ff7757] text-2xl tracking-[0] leading-[52px] whitespace-nowrap">
+            <span className="font-rubik font-normal text-xl">
               Read More
             </span>
 
