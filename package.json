@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "parcel src/index.html --port 3000",
-        "build": "parcel build src/index.html --dist-dir dist --public-url /sorria-viagens/"
+        "build": "parcel build src/index.html --dist-dir dist --public-url ./"
     },
     "dependencies": {
         "lucide": "^0.554.0",
