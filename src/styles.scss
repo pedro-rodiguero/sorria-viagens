@@ -1,0 +1,62 @@
+/* COLORS */
+:root {
+  --x-50: rgba(255, 228, 221, 1);
+  --x-100: rgba(255, 210, 199, 1);
+  --x-200: rgba(255, 187, 171, 1);
+  --x-300: rgba(255, 164, 143, 1);
+  --x-400: rgba(255, 142, 115, 1);
+  --x-500: rgba(255, 119, 87, 1);
+  --x-600: rgba(212, 99, 73, 1);
+  --x-700: rgba(170, 79, 58, 1);
+  --x-800: rgba(128, 60, 44, 1);
+  --x-900: rgba(85, 40, 29, 1);
+  --x-1000: rgba(51, 24, 17, 1);
+
+  --font-rubik: "Rubik", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+}
+
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GLOBAL STYLES */
+body {
+  font-family: var(--font-rubik);
+  color: white;
+  background-color: var(--x-1000);
+}
+
+/* UTILITY-LIKE CLASSES */
+.text-center {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Example hero section */
+.hero {
+  background-image: url("./assets/hero-background.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 150px 20px;
+  text-align: center;
+
+  h1 {
+    font-family: var(--font-playfair);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+}
