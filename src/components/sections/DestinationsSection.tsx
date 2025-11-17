@@ -1,90 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaMapMarkerAlt } from "react-icons/fa";
+import "./destination.scss";
 
 const destinations = [
   {
     id: 1,
     title: "Monumento de Berlin",
     location: "Berlin, Alemanha",
+    image:
+      "https://api.builder.io/api/v1/image/assets/TEMP/5fd7d029d5faaf47a3cc01ba4941b7a88a2a8aed?width=994",
   },
   {
     id: 2,
     title: "Millennium Bridge",
     location: "Londres, Reino Unido",
+    image:
+      "https://api.builder.io/api/v1/image/assets/TEMP/d05d9fa5bc60d785fa9158905eb01f69001d9d83?width=994",
   },
   {
     id: 3,
     title: "Rialto Bridge",
     location: "Veneza, Italy",
+    image:
+      "https://api.builder.io/api/v1/image/assets/TEMP/8002a551e104e07d4dad77d8e122ce00e417ff6b?width=994",
   },
   {
     id: 4,
     title: "Sea of Orange Tiles",
     location: "Lisboa, Portugal",
+    image:
+      "https://api.builder.io/api/v1/image/assets/TEMP/c88bfd7cac22da6d34d63c80628af07a386890f4?width=994",
   },
 ];
 
 export const DestinationsSection = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const handlePrev = () => {
+    if (slideIndex > 0) setSlideIndex(slideIndex - 1);
+  };
+
+  const handleNext = () => {
+    if (slideIndex < destinations.length - 1) setSlideIndex(slideIndex + 1);
+  };
+
   return (
-    // SUGGESTION: Using absolute positioning with large pixel values can make the layout brittle and not responsive.
-    // Consider using a more flexible layout system to ensure it looks good on different screen sizes.
-    <section className="flex flex-col w-[1920px] items-start justify-center gap-[100px] pl-[182px] pr-0 py-[140px] absolute top-[1194px] left-0">
-      <header className="flex items-end pl-0 pr-[182px] py-0 self-stretch w-full flex-[0_0_auto] gap-8 relative">
-        <div className="flex flex-col items-start flex-1 grow gap-8 relative">
-          <div className="flex flex-col items-start gap-5 relative self-stretch w-full flex-[0_0_auto]">
-            <h2 className="relative self-stretch mt-[-1.00px] [font-family:'Playfair_Display-Regular',Helvetica] font-normal text-[#172432] text-[64px] tracking-[0] leading-[normal]">
-              Destinos Populares
-            </h2>
+    <section className="destinations">
+      <header className="destinations__header">
+        <div className="destinations__heading">
+          <h2 className="destinations__title">Destinos Populares</h2>
+          <div className="destinations__line"></div>
 
-            {/* Replacing the line SVG with a styled div for consistency */}
-            <div className="w-[365px] h-[3px] bg-[#ff7757]" role="presentation" />
-          </div>
-
-          <p className="relative self-stretch [font-family:'Rubik-Regular',Helvetica] font-normal text-[#767e86] text-2xl tracking-[0] leading-[normal]">
+          <p className="destinations__subtitle">
             Destinos mais populares ao redor do mundo, de patrimônios históricos
             a belezas naturais.
           </p>
         </div>
 
-        <nav
-          className="inline-flex items-start gap-10 relative flex-[0_0_auto]"
-          aria-label="Navegação de destinos"
-        >
+        <nav className="destinations__nav" aria-label="Navegação de destinos">
           <button
             type="button"
             aria-label="Anterior"
-            className="p-3 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors"
+            onClick={handlePrev}
+            disabled={slideIndex === 0}
+            className="destinations__nav-btn destinations__nav-btn--dark"
           >
-            <FaChevronLeft aria-hidden="true" />
+            <FaChevronLeft />
           </button>
 
           <button
             type="button"
             aria-label="Próximo"
-            className="p-3 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors"
+            onClick={handleNext}
+            disabled={slideIndex >= destinations.length - 3}
+            className="destinations__nav-btn destinations__nav-btn--coral"
           >
-            <FaChevronRight aria-hidden="true" />
+            <FaChevronRight />
           </button>
         </nav>
       </header>
 
-      <div className="flex items-start gap-8 relative self-stretch w-full flex-[0_0_auto]">
-        {destinations.map((destination, index) => (
+      <div className="destinations__grid">
+        {destinations.map((destination) => (
           <article
             key={destination.id}
-            className={`${index === 3 ? "mr-[-346.00px]" : ""} w-[497px] h-[661px] justify-end px-6 py-10 rounded-[26px] bg-[linear-gradient(0deg,rgba(255,119,87,0.1)_0%,rgba(255,119,87,0.1)_100%)] flex flex-col items-start relative`}
+            className="destinations__card"
+            style={{
+              backgroundImage: `
+                linear-gradient(0deg, rgba(255,119,87,0.10), rgba(255,119,87,0.10)),
+                url(${destination.image})
+              `,
+            }}
           >
-            <div className="flex flex-col items-start gap-[17px] relative self-stretch w-full flex-[0_0_auto]">
-              <h3
-                className={`relative ${index === 2 || index === 3 ? "w-fit" : "self-stretch"} mt-[-1.00px] [font-family:'Playfair_Display-Medium',Helvetica] font-medium text-white text-[28px] tracking-[0] leading-[normal]`}
-              >
-                {destination.title}
-              </h3>
+            <div className="destinations__card-content">
+              <h3 className="destinations__card-title">{destination.title}</h3>
 
-              <div className="flex items-center gap-4 relative self-stretch w-full flex-[0_0_auto]">
-                <FaMapMarkerAlt className="text-white w-6 h-6" aria-hidden="true" />
-
-                <p className="relative flex-1 mt-[-1.00px] [font-family:'Rubik-Regular',Helvetica] font-normal text-white text-2xl tracking-[0] leading-[normal]">
+              <div className="destinations__location">
+                <FaMapMarkerAlt className="destinations__location-icon" />
+                <p className="destinations__location-text">
                   {destination.location}
                 </p>
               </div>
@@ -95,3 +108,4 @@ export const DestinationsSection = () => {
     </section>
   );
 };
+
