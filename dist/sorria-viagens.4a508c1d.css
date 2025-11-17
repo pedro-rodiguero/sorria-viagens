@@ -1,0 +1,57 @@
+:root {
+  --x-50: #ffe4dd;
+  --x-100: #ffd2c7;
+  --x-200: #ffbbab;
+  --x-300: #ffa48f;
+  --x-400: #ff8e73;
+  --x-500: #ff7757;
+  --x-600: #d46349;
+  --x-700: #aa4f3a;
+  --x-800: #803c2c;
+  --x-900: #55281d;
+  --x-1000: #331811;
+  --font-rubik: "Rubik", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-rubik);
+  color: #fff;
+  background-color: var(--x-1000);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.hero {
+  text-align: center;
+  background-image: url("hero-background.2d315a98.jpg");
+  background-position: center;
+  background-size: cover;
+  padding: 150px 20px;
+}
+
+.hero h1 {
+  font-family: var(--font-playfair);
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
+
+.hero p {
+  opacity: .9;
+  font-size: 1.25rem;
+}
+/*# sourceMappingURL=sorria-viagens.4a508c1d.css.map */
