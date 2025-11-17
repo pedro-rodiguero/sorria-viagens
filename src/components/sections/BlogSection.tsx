@@ -1,8 +1,7 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
-// It's good practice to import images that are part of the component's content.
-// Assuming the image is in an assets folder relative to this component.
-import blogImage from "../../assets/blog-image.jpg"; // Example: Update with the correct path to your image
+import blogImage from "../../assets/blog-image.jpg";
+import "./blog.scss";
 
 const blogContent = {
   title: "Uma preocupação a menos ao planejar seu casamento",
@@ -16,56 +15,35 @@ const blogContent = {
 
 export const BlogSection = () => {
   return (
-    // --- Responsive Blog Section ---
-    <section
-      id="blog"
-      className="flex flex-col items-center justify-center gap-16 py-20 px-4 sm:px-8 w-full"
-    >
-      <header className="flex flex-col items-center text-center gap-4 max-w-3xl">
-        <div className="flex flex-col items-center gap-5">
-          <h2 className="text-4xl md:text-5xl font-playfair font-normal text-gray-800">
-              Nosso blog
-          </h2>
-
-          <div className="w-36 h-1 bg-[#ff7757]" role="presentation" />
+    <section id="blog" className="blog-section">
+      <header className="blog-header">
+        <div className="title-container">
+          <h2>Nosso blog</h2>
+          <div className="divider"></div>
         </div>
 
-        <p className="text-lg md:text-xl font-rubik font-normal text-gray-600">
-          Dicas e Experiências de Viagem: Descubra o Mundo Conosco!
-        </p>
+        <p>Dicas e Experiências de Viagem: Descubra o Mundo Conosco!</p>
       </header>
 
-      <article className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 w-full max-w-7xl">
-        {/* Blog Image */}
+      <article className="blog-content">
         <img
           src={blogImage}
-          className="w-full lg:w-1/2 h-auto max-h-[600px] object-cover rounded-2xl shadow-lg"
-          aria-label="Imagem do blog sobre planejamento de casamento"
-          alt="Mulher de costas olhando para uma paisagem de montanhas"
+          alt="Mulher de costas olhando para montanhas"
+          className="blog-image"
         />
 
-        {/* Blog Content */}
-        <div className="flex-1 flex flex-col items-start gap-6 text-left">
-          <h3 className="text-4xl md:text-5xl font-playfair font-normal text-gray-800 leading-tight">
-            {blogContent.title}
-          </h3>
+        <div className="blog-text">
+          <h3>{blogContent.title}</h3>
 
-          <div className="font-rubik font-normal text-gray-700 text-lg text-justify leading-relaxed space-y-4">
-            {blogContent.paragraphs.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
+          <div className="paragraphs">
+            {blogContent.paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
             ))}
           </div>
 
-          <a
-            href="#read-more"
-            className="flex items-center gap-3 text-[#ff7757] transition-opacity hover:opacity-80"
-            aria-label="Leia mais sobre uma preocupação a menos ao planejar seu casamento"
-          >
-            <span className="font-rubik font-normal text-xl">
-              Read More
-            </span>
-
-            <FaArrowRight className="text-[#ff7757]" aria-hidden="true" />
+          <a href="#read-more" className="read-more">
+            <span>Read More</span>
+            <FaArrowRight />
           </a>
         </div>
       </article>
