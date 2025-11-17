@@ -1,64 +1,85 @@
-import React from "react";
-import logo from "../../assets/image-1.png"; // Using the consistent site logo
+import React, { useState } from "react";
+import { Menu, X } from "lucide-react";
+import logo from "../../assets/image-1.png";
+
+import "./header.scss";
 
 export const HeaderSection = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const navigationItems = [
-    { label: "Home", href: "#home", isActive: true },
-    { label: "Destinos", href: "#destinos", isActive: false },
-    { label: "Depoimentos", href: "#depoimentos", isActive: false },
-    { label: "Blog", href: "#blog", isActive: false },
+    { label: "Home", href: "#home" },
+    { label: "Destinos", href: "#destinos" },
+    { label: "Depoimentos", href: "#depoimentos" },
+    { label: "Blog", href: "#blog" },
   ];
 
+  const isActive = (href) => window.location.hash === href;
+
   return (
-    // Removed absolute positioning and fixed width for better responsiveness.
-    // Using responsive padding (px-4 sm:px-8 md:px-20 lg:px-40)
-    <header className="flex w-full items-center justify-between px-4 sm:px-8 md:px-20 lg:px-40 py-8 absolute top-0 left-0 z-10 bg-transparent">
-      <a href="#home" aria-label="Homepage">
-        <img className="h-12 w-auto" alt="Sorria Viagens Logo" src={logo} />
-      </a>
-
-      <nav
-        className="hidden md:flex items-center justify-center gap-8"
-        role="navigation"
-        aria-label="Main navigation"
-      >
-        {navigationItems.map((item) => (
-          <div key={item.label} className="flex flex-col items-center gap-1">
-            <a
-              href={item.href}
-              // Simplified conditional styling for font weight
-              className={`text-xl text-white whitespace-nowrap transition-colors hover:text-white/80 ${
-                item.isActive ? "font-medium" : "font-normal"
-              }`}
-            >
-              {item.label}
-            </a>
-
-            {/* Replaced SVG with a styled div for the underline */}
-            {item.isActive && (
-              <div className="self-stretch w-full h-[3px] bg-[#ff7757]" />
-            )}
-          </div>
-        ))}
-      </nav>
-
-      <div className="hidden md:flex items-center gap-9">
-        <a
-          href="#login"
-          className="font-normal text-white text-xl whitespace-nowrap transition-colors hover:text-white/80"
-        >
-          Login
+    <header className="header">
+      <div className="header__inner">
+        {/* Logo */}
+        <a href="#home" className="header__logo">
+          <img src={logo} alt="Sorria Viagens Logo" />
         </a>
 
+        {/* Mobile menu toggle */}
         <button
-          type="button"
-          className="px-8 py-4 bg-[#ff7757] rounded-xl text-white text-xl font-normal whitespace-nowrap transition-transform hover:scale-105"
-          aria-label="Sign up"
+          className="header__mobile-toggle"
+          aria-label="Toggle menu"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          Sign up
+          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
+
+        {/* Desktop navigation */}
+        <nav className="header__nav">
+          {navigationItems.map((item) => (
+            <a key={item.label} href={item.href} className="nav-item">
+              <span className={`nav-label ${isActive(item.href) ? "active" : ""}`}>
+                {item.label}
+              </span>
+
+              {isActive(item.href) && <div className="nav-underline" />}
+            </a>
+          ))}
+        </nav>
+
+        {/* Desktop actions */}
+        <div className="header__actions">
+          <a href="#login" className="login-btn">Login</a>
+          <a href="#signup" className="signup-btn">
+            Sign up
+          </a>
+        </div>
       </div>
-      {/* TODO: Add a mobile menu button (hamburger icon) for smaller screens */}
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu">
+          <nav className="mobile-menu__nav">
+            {navigationItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="mobile-menu__item"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="mobile-label">{item.label}</span>
+
+                {isActive(item.href) && <div className="mobile-underline" />}
+              </a>
+            ))}
+
+            <div className="mobile-auth">
+              <a href="#login" className="mobile-login">Login</a>
+              <a href="#signup" className="mobile-signup">Sign up</a>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
+

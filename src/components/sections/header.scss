@@ -1,0 +1,224 @@
+/* ---------------------------------------------- */
+/*                   VARIABLES                     */
+/* ---------------------------------------------- */
+
+:root {
+  --font-sans: "Rubik", sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  --white: #ffffff;
+  --text-light: #ffffff;
+  --text-dim: rgba(255,255,255,0.8);
+
+  --accent: #ff7757;
+  --accent-hover: #ff6442;
+
+  --header-padding-x: 182px;
+  --header-padding-mobile: 16px;
+}
+
+/* ---------------------------------------------- */
+/*                    HEADER                       */
+/* ---------------------------------------------- */
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  width: 100%;
+  background: transparent;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 24px var(--header-padding-mobile);
+
+    @media (min-width: 768px) {
+      padding: 32px 48px;
+    }
+
+    @media (min-width: 1024px) {
+      padding: 32px 96px;
+    }
+
+    @media (min-width: 1280px) {
+      padding: 32px var(--header-padding-x);
+    }
+  }
+
+  /* Logo */
+  &__logo img {
+    height: 48px;
+
+    @media (min-width: 768px) {
+      height: 64px;
+    }
+  }
+
+  /* Mobile toggle */
+  &__mobile-toggle {
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  /* NAV (desktop) */
+  &__nav {
+    display: none;
+
+    @media (min-width: 1024px) {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+  }
+
+  .nav-label {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    color: var(--white);
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &.active {
+      font-weight: 600;
+    }
+  }
+
+  .nav-underline {
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+
+  /* ACTION BUTTONS (desktop) */
+  &__actions {
+    display: none;
+
+    @media (min-width: 1024px) {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+  }
+
+  .login-btn {
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 20px;
+    color: var(--white);
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  .signup-btn {
+    text-decoration: none;
+    padding: 16px 32px;
+    background: var(--accent);
+    border-radius: 12px;
+    color: var(--white);
+    font-family: var(--font-sans);
+    font-size: 20px;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--accent-hover);
+    }
+  }
+}
+
+/* ---------------------------------------------- */
+/*                MOBILE MENU                     */
+/* ---------------------------------------------- */
+
+.mobile-menu {
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(8px);
+  padding: 24px;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-decoration: none;
+    padding: 12px 0;
+
+    .mobile-label {
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 18px;
+    }
+  }
+
+  .mobile-underline {
+    width: 56px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+
+  .mobile-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 20px;
+    margin-top: 10px;
+  }
+
+  .mobile-login {
+    color: var(--white);
+    font-family: var(--font-sans);
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  .mobile-signup {
+    text-decoration: none;
+    background: var(--accent);
+    padding: 16px 24px;
+    border-radius: 12px;
+    color: var(--white);
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: 18px;
+
+    &:hover {
+      background: var(--accent-hover);
+    }
+  }
+}
+
